@@ -1,0 +1,9 @@
+services:
+  discord-timer-bot:
+    build: .
+    container_name: discord-timer-bot
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    stop_grace_period: 20s

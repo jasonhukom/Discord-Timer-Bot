@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Projek 2</string>
-    <string name="hint_nomor">Masukkan nomor telepon</string>
-    <string name="label_rumah">Telepon Rumah</string>
-    <string name="label_seluler">Mobile</string>
-    <string name="label_kantor">Telepon Kantor</string>
-    <string name="label_tombol">Tampilkan</string>
-</resources>
