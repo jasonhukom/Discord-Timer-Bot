@@ -1,0 +1,36 @@
+name: Discord Timer
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: discord-timer
+  cancel-in-progress: false
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send Discord reminder
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          TIMER_MESSAGE: ${{ vars.TIMER_MESSAGE }}
+        run: python send_once.py
